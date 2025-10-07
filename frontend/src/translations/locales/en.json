@@ -1,0 +1,46 @@
+{
+  "nav": {
+    "play": "Play",
+    "whitepaper": "Whitepaper",
+    "market": "Marketplace",
+    "mint": "Mint"
+  },
+  "hud": {
+    "gas": "GAS",
+    "energy": "Energy",
+    "turns": "Turns",
+    "faction": "Faction",
+    "level": "Level"
+  },
+  "landing": {
+    "title": "NEON DRIFTERS",
+    "subtitle": "Explore, trade and survive in the stellar metropolis.",
+    "cta": "Enter the Hangar"
+  },
+  "exploration": {
+    "title": "Exploration",
+    "start": "Start exploration",
+    "dailyTurns": "Daily turns"
+  },
+  "marketplace": {
+    "title": "Marketplace",
+    "listings": "Listings"
+  },
+  "mint": {
+    "title": "Fleet Mint",
+    "basic": "Basic",
+    "intermediate": "Intermediate",
+    "premium": "Premium"
+  },
+  "profile": {
+    "title": "Pilot Profile"
+  },
+  "common": {
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "retry": "Retry",
+    "success": "Success",
+    "error": "Error",
+    "loading": "Loading..."
+  }
+}

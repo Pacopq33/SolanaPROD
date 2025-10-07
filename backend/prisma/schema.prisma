@@ -1,0 +1,97 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         String   @id @default(cuid())
+  wallet     String   @unique
+  faction    String
+  level      Int      @default(1)
+  gas        Int      @default(0)
+  energy     Int      @default(100)
+  turns      Int      @default(5)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  assets     Asset[]
+  fleets     Fleet[]
+  transactions Transaction[]
+  explorations Exploration[]
+}
+
+model Asset {
+  id        String   @id @default(cuid())
+  type      String
+  tier      Int
+  energy    Int
+  faction   String
+  rarity    String
+  ownerId   String
+  owner     User     @relation(fields: [ownerId], references: [id])
+  createdAt DateTime @default(now())
+  listings  MarketListing[]
+}
+
+model Fleet {
+  id        String   @id @default(cuid())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  shipId    String
+  workerIds String[]
+  power     Int
+  createdAt DateTime @default(now())
+}
+
+model Map {
+  id        String   @id @default(cuid())
+  name      String
+  biome     String
+  difficulty Int
+  rewardMultiplier Float
+  climate   String
+  isActive  Boolean  @default(true)
+}
+
+model Exploration {
+  id        String   @id @default(cuid())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  mapId     String
+  success   Boolean
+  rewardGas Int
+  narrative String
+  createdAt DateTime @default(now())
+}
+
+model MarketListing {
+  id        String   @id @default(cuid())
+  asset     Asset    @relation(fields: [assetId], references: [id])
+  assetId   String
+  sellerId  String
+  priceGas  Int
+  status    String   @default("active")
+  createdAt DateTime @default(now())
+}
+
+model Transaction {
+  id        String   @id @default(cuid())
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String
+  type      String
+  amount    Int
+  payload   Json
+  createdAt DateTime @default(now())
+}
+
+model EconomyEvent {
+  id        String   @id @default(cuid())
+  name      String
+  description String
+  effect    String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+}
